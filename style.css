@@ -19,6 +19,9 @@ label {
   text-decoration: underline;
   cursor: pointer;
 }
+#fileName {
+  font-size: 0.8rem;
+}
 label img {
   height: 20px;
   opacity: 0.6;

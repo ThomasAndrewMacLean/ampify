@@ -13,8 +13,12 @@
     <h1>Maak je eigen Els Ampe</h1>
     <form id="form">
 
-        <label for="bg">Selecteer een achtergrond <img src="./upload-solid.svg"/></label>
-        <input required type="file" name="bg" id="bg">
+        <div class="wrap">
+
+            <label for="bg">Selecteer een achtergrond <img src="./upload-solid.svg"/></label>
+            <span id="fileName"></span>
+        </div>
+        <input required type="file" name="bg" id="bg" accept="image/*">
         
          
         <input required type="text" name="text" id="text" placeholder="Maar wat is dat toch ...">

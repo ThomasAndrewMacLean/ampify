@@ -5,7 +5,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const form = document.getElementById("form");
 const downloadButton = document.getElementById("downloadButton");
-
+const fileName = document.getElementById("fileName");
 // Set display size (css pixels).
 var sizeW = 600;
 var sizeH = 335;
@@ -17,6 +17,12 @@ var scale = window.devicePixelRatio; // Change to 1 on retina screens to see blu
 canvas.width = sizeW * scale;
 canvas.height = sizeH * scale;
 ctx.scale(scale, scale);
+
+input.addEventListener("change", (e) => {
+  if (!input.files[0]) return;
+
+  fileName.innerText = "(" + input.files[0].name + ")";
+});
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
