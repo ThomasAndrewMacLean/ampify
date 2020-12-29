@@ -1,46 +1,60 @@
 const input = document.getElementById("bg");
 const text = document.getElementById("text");
 const button = document.getElementById("button");
-const ctx = document.getElementById("canvas").getContext("2d");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const form = document.getElementById("form");
+const downloadButton = document.getElementById("downloadButton");
 
-button.addEventListener("click", async () => {
+// Set display size (css pixels).
+var sizeW = 600;
+var sizeH = 335;
+canvas.style.width = sizeW + "px";
+canvas.style.height = sizeH + "px";
+
+// Set actual size in memory (scaled to account for extra pixel density).
+var scale = window.devicePixelRatio; // Change to 1 on retina screens to see blurry canvas.
+canvas.width = sizeW * scale;
+canvas.height = sizeH * scale;
+ctx.scale(scale, scale);
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
   clear();
-  drawBackground();
+  await drawBackground();
   await drawEls();
   drawText();
+  downloadButton.classList.remove("hidden");
+});
+
+downloadButton.addEventListener("click", () => {
+  var link = document.createElement("a");
+  link.download = "els.png";
+  link.href = document.getElementById("canvas").toDataURL();
+  link.click();
 });
 
 const drawBackground = async () => {
   if (!input.files[0]) return;
   const backgroundImage = await loadImage(URL.createObjectURL(input.files[0]));
-  ctx.drawImage(backgroundImage, 0, 0, ctx.canvas.width, ctx.canvas.height);
+  ctx.drawImage(backgroundImage, 0, 0, sizeW, sizeH);
 };
 
 const drawEls = async () => {
   const elsImage = await loadImage("./els.png");
 
-  ctx.drawImage(
-    elsImage,
-    ctx.canvas.width / 2,
-    ctx.canvas.height * 0.2,
-    ctx.canvas.width / 2,
-    ctx.canvas.height * 0.8
-  );
+  ctx.drawImage(elsImage, sizeW / 2, sizeH * 0.2, sizeW / 2, sizeH * 0.8);
 };
 
 function drawText() {
-  ctx.font = "12px serif";
+  ctx.font = "12px sans-serif";
   ctx.textAlign = "center";
-  ctx.fillStyle = "#90909069";
-  ctx.fillRect(20, ctx.canvas.height - 20, ctx.canvas.width * 0.8, 12);
+  ctx.fillStyle = "#909090CC";
+  ctx.fillRect(20, sizeH - 20, sizeW * 0.9, 12);
 
-  ctx.fillStyle = "black";
+  ctx.fillStyle = "white";
 
-  ctx.fillText(
-    text.value || "Maar wat is dat toch ...",
-    ctx.canvas.width / 2,
-    ctx.canvas.height - 10
-  );
+  ctx.fillText(text.value || "Maar wat is dat toch ...", sizeW / 2, sizeH - 10);
 }
 
 function loadImage(url) {

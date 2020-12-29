@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <label for="bg">choos background</label>
-    <input type="file" name="bg" id="bg">
+    <form id="form">
 
-    <label for="text"></label>
-    <input type="text" name="text" id="text" placeholder="Maar wat is dat toch ...">
+        <label for="bg">choos background</label>
+        <input required type="file" name="bg" id="bg">
+        
+        <label for="text"></label>
+        <input required type="text" name="text" id="text" placeholder="Maar wat is dat toch ...">
+        
+        <button id="button">Create</button>
+    </form>
+    <canvas id="canvas" height="335" width="600"></canvas>
 
-    <button id="button">Create</button>
-    <canvas id="canvas"></canvas>
-
+    <button id="downloadButton" class="hidden">download</button>
     <script src="script.js"></script>
 </body>
 </html>

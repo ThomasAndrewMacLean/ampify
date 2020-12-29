@@ -1,9 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 canvas {
-  height: 300px;
-  width: 400px;
-  outline: 1px solid grey;
+  /* height: 335px;
+  width: 600px;
+  outline: 1px solid grey; */
 }
 
 #bg {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  /* display: none; */
+}
+
+.hidden {
   display: none;
 }
