@@ -1,0 +1,9 @@
+canvas {
+  height: 300px;
+  width: 400px;
+  outline: 1px solid grey;
+}
+
+#bg {
+  display: none;
+}
