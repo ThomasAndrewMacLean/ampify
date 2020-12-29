@@ -25,6 +25,7 @@ form.addEventListener("submit", async (e) => {
   await drawEls();
   drawText();
   downloadButton.classList.remove("hidden");
+  form.classList.add("hidden");
 });
 
 downloadButton.addEventListener("click", () => {
@@ -47,10 +48,10 @@ const drawEls = async () => {
 };
 
 function drawText() {
-  ctx.font = "12px sans-serif";
+  ctx.font = "14px sans-serif";
   ctx.textAlign = "center";
   ctx.fillStyle = "#909090CC";
-  ctx.fillRect(20, sizeH - 20, sizeW * 0.9, 12);
+  ctx.fillRect(20, sizeH - 22, sizeW - 40, 16);
 
   ctx.fillStyle = "white";
 
